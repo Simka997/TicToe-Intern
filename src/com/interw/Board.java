@@ -33,19 +33,18 @@ public class Board implements InputValidatorInterface {
 
         if (!isSpaceBetweenXandY(positions)) {
             System.err.println("Invalid input: you must enter the x and y coordinates separated by spaces / or pattern is not correct");
-           return false;
+            return false;
         }
         getCordinatesFronUserInput(positions);
         if (cellCordinate.getY() > 3 || cellCordinate.getY() <= 0 || cellCordinate.getX() > 3 || cellCordinate.getX() <= 0) {
             System.err.println("Invalid input: those coordinates are outside the playable area");
             return false;
 
-        }
-        else if (EMPTY != (board[cellCordinate.getX()][cellCordinate.getY()])) {
+        } else if (EMPTY != (board[cellCordinate.getX()][cellCordinate.getY()])) {
             System.err.println("Invalid input: that space is already taken");
             return false;
         }
-       return EMPTY == (board[cellCordinate.getX()][cellCordinate.getY()]);
+        return EMPTY == (board[cellCordinate.getX()][cellCordinate.getY()]);
 
     }
 

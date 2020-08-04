@@ -1,6 +1,5 @@
 package com.interw;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -51,7 +50,7 @@ public class Main {
                     System.out.println("Bad MOVE");
                     break;
                 }
-                case UNSOLVED:{
+                case UNSOLVED: {
                     System.out.println("No one wins bye bye");
                     gameEnded = true;
                     break;

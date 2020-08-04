@@ -1,7 +1,6 @@
 package com.interw;
 
 import com.interw.interfaces.InputValidatorInterface;
-import com.interw.еxceptions.PositionNotValidException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,7 +11,7 @@ public class Board implements InputValidatorInterface {
     private static final int EMPTY = 0;
     private int freeSpaces = 9;
     public char[][] board = new char[ROWS][COLS];
-    private Cell cellCordinate = new Cell();
+    private final Cell cellCordinate = new Cell();
 
     // init and print game board
     public void printBoard() {
@@ -60,17 +59,14 @@ public class Board implements InputValidatorInterface {
       /*  System.err.print("free: " + freeSpaces);
         System.err.print("Has free: " + hasFreeSpaces());*/
 
-            board[cellCordinate.getX()][cellCordinate.getY()] = playerSign;
+        board[cellCordinate.getX()][cellCordinate.getY()] = playerSign;
         // Check everytime does we have winner
-            System.err.println(playerSign);
-            return isWin(playerSign);
+        System.err.println(playerSign);
+        return isWin(playerSign);
     }
 
     protected boolean hasFreeSpaces() {
-        if (this.freeSpaces > 0) {
-            return true;
-        }
-        return false;
+        return this.freeSpaces > 0;
     }
 
     // Chack winner
@@ -121,7 +117,7 @@ public class Board implements InputValidatorInterface {
             try {
                 arrayXandY[i] = Integer.parseInt(pomarr[i]);
             } catch (NumberFormatException exception) {
-                exception.getMessage();
+                exception.getStackTrace();
 
             }
 

@@ -1,7 +1,7 @@
 package com.interw;
 
 public class Cell {
-    private int x,y;
+    private int x, y;
 
     public int getX() {
         return x;

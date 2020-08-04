@@ -26,41 +26,34 @@ public class Board implements InputValidatorInterface {
         System.out.println("\n~~~~~~~~~~~~~");
     }
 
-    // Exceptions for inputed positions
+    // Exceptions for entered positions
 
     protected boolean isValidMove(String positions) {
 
         if (!isSpaceBetweenXandY(positions)) {
-            System.err.print("Invalid input: you must enter the x and y coordinates separated by spaces/ or patern is not correct");
-            //throw new PositionNotValidException("Invalid input: you must enter the x and y coordinates separated by spaces");
-            return false;
+            System.err.print("Invalid input: you must enter the x and y coordinates separated by spaces / or pattern is not correct");
+           return false;
         }
         getCordinatesFronUserInput(positions);
-        // System.out.print((cellCordinate.getX() < 3) + " is X " + (cellCordinate.getX() >= 0) + " is X" + (cellCordinate.getY() < 3) + " is Y " + (cellCordinate.getY() >= 0) + " is Y");
         if (cellCordinate.getY() >= 3 || cellCordinate.getY() < 0 || cellCordinate.getX() >= 3 || cellCordinate.getX() < 0) {
             System.err.print("Invalid input: those coordinates are outside the playable area");
             return false;
 
         }
-        // throw new PositionNotValidException("Invalid input: those coordinates are outside the playable area");
-
         else if (EMPTY != (board[cellCordinate.getX()][cellCordinate.getY()])) {
             System.err.print("Invalid input: that space is already taken");
             return false;
         }
-        System.out.print((EMPTY == (board[cellCordinate.getX()][cellCordinate.getY()])) + " is Empty");
-        return EMPTY == (board[cellCordinate.getX()][cellCordinate.getY()]);
+       return EMPTY == (board[cellCordinate.getX()][cellCordinate.getY()]);
 
     }
 
     // Add sign in cell
     protected boolean add(char playerSign) {
         this.freeSpaces--;
-      /*  System.err.print("free: " + freeSpaces);
-        System.err.print("Has free: " + hasFreeSpaces());*/
 
         board[cellCordinate.getX()][cellCordinate.getY()] = playerSign;
-        // Check everytime does we have winner
+        // Check if someone won
         System.err.println(playerSign);
         return isWin(playerSign);
     }
@@ -107,7 +100,6 @@ public class Board implements InputValidatorInterface {
 
     @Override
     public void getCordinatesFronUserInput(String position) {
-        //System.out.print("Invalid input: " + isSpaceBetweenXandY(position));
 
         // get cordinate value from string position
         String[] pomarr = position.split(" ");
@@ -121,8 +113,6 @@ public class Board implements InputValidatorInterface {
 
             }
 
-
-            System.err.println(arrayXandY[i] + " **getInputMeth** ");
         }
         cellCordinate.setX(arrayXandY[0]);
         cellCordinate.setY(arrayXandY[1]);
@@ -134,7 +124,6 @@ public class Board implements InputValidatorInterface {
         // regex for num-space-num
         Pattern p = Pattern.compile("^|[0-9] [0-9]$");
         Matcher m = p.matcher(position);
-        //   System.out.print(isMatch);
         return m.matches();
     }
 

@@ -40,7 +40,6 @@ public class TicToeGame {
             return StatusGame.QUIT;
         }
 
-        //boolean isWinner = board.add(currentPlayer.getSign());
         if (board.add(currentPlayer.getSign())) {
             return StatusGame.WINNER;
         } else {

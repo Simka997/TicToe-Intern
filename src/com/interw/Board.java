@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Board implements InputValidatorInterface {
     // 3x3 tabel
-    private static final int ROWS = 3, COLS = 3;
+    private static final int ROWS = 4, COLS = 4;
     private static final int EMPTY = 0;
     private int freeSpaces = 9;
     public char[][] board = new char[ROWS][COLS];
@@ -15,10 +15,11 @@ public class Board implements InputValidatorInterface {
 
     // init and print game board
     public void printBoard() {
-        for (int i = 0; i < ROWS; i++) {
+        System.out.print("   " + 1 + "   " + 2 + "   " + 3 + "  ");
+        for (int i = 1; i < ROWS; i++) {
             System.out.println("\n~~~~~~~~~~~~~");
-            System.out.print("| ");
-            for (int j = 0; j < COLS; j++) {
+            System.out.print(i + " | ");
+            for (int j = 1; j < COLS; j++) {
                 System.out.print(board[i][j]);
                 System.out.print(" | ");
             }

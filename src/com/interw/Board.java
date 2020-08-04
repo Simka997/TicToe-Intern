@@ -20,7 +20,7 @@ public class Board implements InputValidatorInterface {
             System.out.println("\n~~~~~~~~~~~~~");
             System.out.print(i + " | ");
             for (int j = 1; j < COLS; j++) {
-                System.out.print(board[i][j]);
+                System.out.print(board[j][i]);
                 System.out.print(" | ");
             }
         }
@@ -32,17 +32,17 @@ public class Board implements InputValidatorInterface {
     protected boolean isValidMove(String positions) {
 
         if (!isSpaceBetweenXandY(positions)) {
-            System.err.print("Invalid input: you must enter the x and y coordinates separated by spaces / or pattern is not correct");
+            System.err.println("Invalid input: you must enter the x and y coordinates separated by spaces / or pattern is not correct");
            return false;
         }
         getCordinatesFronUserInput(positions);
-        if (cellCordinate.getY() >= 3 || cellCordinate.getY() < 0 || cellCordinate.getX() >= 3 || cellCordinate.getX() < 0) {
-            System.err.print("Invalid input: those coordinates are outside the playable area");
+        if (cellCordinate.getY() > 3 || cellCordinate.getY() <= 0 || cellCordinate.getX() > 3 || cellCordinate.getX() <= 0) {
+            System.err.println("Invalid input: those coordinates are outside the playable area");
             return false;
 
         }
         else if (EMPTY != (board[cellCordinate.getX()][cellCordinate.getY()])) {
-            System.err.print("Invalid input: that space is already taken");
+            System.err.println("Invalid input: that space is already taken");
             return false;
         }
        return EMPTY == (board[cellCordinate.getX()][cellCordinate.getY()]);
@@ -55,7 +55,7 @@ public class Board implements InputValidatorInterface {
 
         board[cellCordinate.getX()][cellCordinate.getY()] = playerSign;
         // Check if someone won
-        return isWin(playerSign);
+        return isWin();
     }
 
     protected boolean hasFreeSpaces() {
@@ -63,7 +63,7 @@ public class Board implements InputValidatorInterface {
     }
 
     // Chack winner
-    private boolean isWin(char playerSign) {
+    private boolean isWin() {
         return areColumns() || areRows() || areDiagonals();
 
     }
@@ -71,8 +71,9 @@ public class Board implements InputValidatorInterface {
     // Check win by rows
     private boolean areRows() {
 
-        for (int i = 0; i < ROWS; i++) {
-            if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != 0) {
+        for (int i = 1; i < ROWS; i++) {
+            if (board[i][1] == board[i][2] && board[i][2] == board[i][3] && board[i][1] != EMPTY) {
+
                 return true;
             }
         }
@@ -82,8 +83,8 @@ public class Board implements InputValidatorInterface {
     // Check win by columns
     private boolean areColumns() {
 
-        for (int i = 0; i < COLS; i++) {
-            if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i] != 0) {
+        for (int i = 1; i < COLS; i++) {
+            if (board[1][i] == board[2][i] && board[2][i] == board[3][i] && board[1][i] != EMPTY) {
                 return true;
             }
         }
@@ -92,8 +93,8 @@ public class Board implements InputValidatorInterface {
 
     // Check win by diagonals
     private boolean areDiagonals() {
-        return (board[0][0] == board[1][1] && board[1][1] == board[2][2] ||
-                board[0][2] == board[1][1] && board[1][1] == board[2][0]) && board[1][1] != 0;
+        return (board[1][1] == board[2][2] && board[2][2] == board[3][3] ||
+                board[3][1] == board[2][2] && board[2][2] == board[1][3]) && board[2][2] != EMPTY;
 
     }
 

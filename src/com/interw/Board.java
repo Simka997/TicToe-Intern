@@ -54,7 +54,6 @@ public class Board implements InputValidatorInterface {
 
         board[cellCordinate.getX()][cellCordinate.getY()] = playerSign;
         // Check if someone won
-        System.err.println(playerSign);
         return isWin(playerSign);
     }
 

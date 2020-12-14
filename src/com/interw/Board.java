@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class Board implements InputValidatorInterface {
     // 3x3 tabel
     private static final int ROWS = 4, COLS = 4;
-    private static final int EMPTY = 100;
+    private static final int EMPTY = 0;
     private int freeSpaces = 9;
     public char[][] board = new char[ROWS][COLS];
     private final Cell cellCordinate = new Cell();
